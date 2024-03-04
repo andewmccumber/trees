@@ -2,26 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tree Grid Image Survey</title>
+    <title>Species Image Comparison Survey</title>
     <style>
-        .image-pair-container {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 20px;
+        .image-container img {
+            border: 2px solid black; /* Style for image borders */
+            width: 200px; /* Adjust as needed */
+            height: auto; /* Maintain aspect ratio */
         }
-        .question {
-            text-align: center;
-            margin-bottom: 10px;
-        }
+        /* Additional styles as necessary */
     </style>
 </head>
 <body>
-    <h2>Tree Grid Image Survey</h2>
-    <form id="surveyForm">
-        <!-- Image pairs will be injected here by JavaScript -->
-    </form>
-    <button onclick="submitResponses()">Submit</button>
-
+    <h2>Species Image Comparison Survey</h2>
+    
+    <!-- Image Containers for Displaying Species Images -->
+    <div id="image1Container" class="image-container">
+        <!-- Image for first species will be dynamically inserted here -->
+    </div>
+    <div id="image2Container" class="image-container">
+        <!-- Image for second species will be dynamically inserted here -->
+    </div>
+    
+    <!-- Buttons for Regenerating Images for Each Species -->
+    <button id="regenerateSpecies1">Regenerate Image for Species 1</button>
+    <button id="regenerateSpecies2">Regenerate Image for Species 2</button>
+    
     <script src="survey.js"></script>
 </body>
 </html>
