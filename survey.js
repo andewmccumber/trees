@@ -76,12 +76,6 @@ fetch('https://script.google.com/macros/s/AKfycbzdY8nmJ64Zxc6-irgXCIZ8nRvZWb2-kS
         credentials: 'include'
 })
     })
-    .then(response => {
-     if (!response.ok) {
-         throw new Error('Network response was not ok');
-     }
-     return response.json();
-})
 .then(data => {
     console.log(data);
     // Clear the previous selection
