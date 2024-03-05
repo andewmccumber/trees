@@ -51,40 +51,48 @@ document.getElementById('replace2').addEventListener('click', () => {
 // ... (rest of your initial code)
 
 document.getElementById('next').addEventListener('click', () => {
-    // Check which radio button is selected
-    let choice = document.querySelector('input[name="sameSpecies"]:checked')?.value;
-    
-    // Make sure the user has made a selection
-    if (!choice) {
-        alert("Please select Yes or No before moving on to the next pair.");
-        return;
+  // Check which radio button is selected
+  let choice = document.querySelector('input[name="sameSpecies"]:checked')?.value;
+
+  // Make sure the user has made a selection
+  if (!choice) {
+    alert("Please select Yes or No before moving on to the next pair.");
+    return;
+  }
+
+  console.log(currentSpecies);
+  let dataToSend = JSON.stringify({
+    species1: currentSpecies[0],
+    species2: currentSpecies[1],
+    choice: choice
+  });
+
+  console.log(dataToSend);
+  
+  // Send the choice to the Google Apps Script
+  fetch('https://script.google.com/macros/s/AKfycbwmSL4A5s1hoO8ijhcPegSw-HXEhIGH-rxbVqAAsLFHehxRjPMbCHepEF1jb6kaAJjA/execc', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json', // Corrected line: headers property
+    },
+    body: dataToSend,
+    // Include credentials if necessary. Otherwise, remove this line
+    credentials: 'include'
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
     }
-    console.log(currentSpecies);
-    let dataToSend = JSON.stringify({
-        species1: currentSpecies[0],
-        species2: currentSpecies[1],
-        choice: choice
-    });
-console.log(dataToSend);
-    // Send the choice to the Google Apps Script
-fetch('https://script.google.com/macros/s/AKfycbzdY8nmJ64Zxc6-irgXCIZ8nRvZWb2-kSuJ8DTsdJ71g1FgG28wKbmglGkDzYbQ0SlO/exec', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json', // Corrected line: headers property
-        },
-        body: dataToSend,
-        credentials: 'include'
-})
-    })
-.then(data => {
+    return response.json();
+  })
+  .then(data => {
     console.log(data);
     // Clear the previous selection
     document.querySelector('input[name="sameSpecies"]:checked').checked = false;
     // Load the next pair
     displayNewPair();
-})
-.catch(error => {
+  })
+  .catch(error => {
     console.error("Error posting data:", error);
- });
-
-// Do not call displayNewPair() here directly, let it be called after JSON is loaded
+  });
+});
