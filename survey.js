@@ -61,7 +61,7 @@ document.getElementById('next').addEventListener('click', () => {
     }
 
     // Send the choice to the Google Apps Script
-    fetch('YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL', {
+    fetch('https://script.google.com/macros/s/AKfycbxLz5hOaWNi9Nxxt5f1XxbAO4AIRD9_6lrd4PKmnYdVuOoqDRk1jcTICLQYremWE87P/exec', {
         method: 'POST',
         contentType: 'application/json',
         body: JSON.stringify({
