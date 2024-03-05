@@ -1,6 +1,20 @@
 let speciesMapping = {}; // To be filled with your JSON data
 let currentSpecies = [];
 
+// Firebase configuration
+var  firebaseConfig = {
+    apiKey: "AIzaSyDC4xQKkPVejkYvt4NWsIoxmg47i9Awi3o",
+    authDomain: "treetest-a122b.firebaseapp.com",
+    projectId: "treetest-a122b",
+    storageBucket: "treetest-a122b.appspot.com",
+    messagingSenderId: "885813433565",
+    appId: "1:885813433565:web:e8049a92e754311cfc7734",
+    measurementId: "G-KYSP0LT1DP"
+  };
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
 // Load species mapping from JSON
 fetch('speciesImagePaths.json')
     .then(response => response.json())
@@ -60,39 +74,34 @@ document.getElementById('next').addEventListener('click', () => {
     return;
   }
 
-  console.log(currentSpecies);
-  let dataToSend = JSON.stringify({
+  // Log the species and choice
+  console.log(currentSpecies, choice);
+  
+  // Prepare the survey data object
+  let surveyData = {
     species1: currentSpecies[0],
     species2: currentSpecies[1],
     choice: choice
-  });
+  };
 
-  console.log(dataToSend);
-  
-  // Send the choice to the Google Apps Script
-  fetch('https://script.google.com/macros/s/AKfycbwmSL4A5s1hoO8ijhcPegSw-HXEhIGH-rxbVqAAsLFHehxRjPMbCHepEF1jb6kaAJjA/execc', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json', // Corrected line: headers property
-    },
-    body: dataToSend,
-    // Include credentials if necessary. Otherwise, remove this line
-    credentials: 'include'
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log(data);
-    // Clear the previous selection
-    document.querySelector('input[name="sameSpecies"]:checked').checked = false;
-    // Load the next pair
-    displayNewPair();
-  })
-  .catch(error => {
-    console.error("Error posting data:", error);
-  });
+  // Log the data to be sent
+  console.log(surveyData);
+
+  // Get a reference to the Firebase Realtime Database service
+  var database = firebase.database();
+
+  // Write the new survey data to the database
+  var newEntryRef = database.ref('surveyEntries').push();
+  newEntryRef.set(surveyData)
+    .then(function() {
+      console.log('Survey data saved successfully!');
+      // Clear the previous selection
+      document.querySelector('input[name="sameSpecies"]:checked').checked = false;
+      // Load the next pair of images
+      displayNewPair();
+    })
+    .catch(function(error) {
+      console.error("Failed to save survey data: ", error);
+    });
 });
+
