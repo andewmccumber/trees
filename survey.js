@@ -40,36 +40,34 @@ function displayNewPair() {
     document.getElementById('image2').src = getRandomImage(currentSpecies[1]);
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Now you can safely add event listeners
-    document.getElementById('next').addEventListener('click', displayNewPair);
-    document.getElementById('replace1').addEventListener('click', () => {
-        document.getElementById('image1').src = getRandomImage(currentSpecies[0]);
-    });
-    document.getElementById('replace2').addEventListener('click', () => {
-        document.getElementById('image2').src = getRandomImage(currentSpecies[1]);
-    });
-    document.getElementById('submit').addEventListener('click', () => {
-        const choice = confirm("Do you think these are the same species?");
-        fetch('YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL', {
-            method: 'POST',
-            contentType: 'application/json',
-            body: JSON.stringify({
-                species1: currentSpecies[0],
-                species2: currentSpecies[1],
-                choice: choice ? "Yes" : "No"
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            displayNewPair(); // Move to the next pair after submitting
-        })
-        .catch(error => {
-            console.error("Error posting data:", error);
-        });
-    });
+document.getElementById('next').addEventListener('click', displayNewPair);
+document.getElementById('replace1').addEventListener('click', () => {
+    document.getElementById('image1').src = getRandomImage(currentSpecies[0]);
+});
+document.getElementById('replace2').addEventListener('click', () => {
+    document.getElementById('image2').src = getRandomImage(currentSpecies[1]);
 });
 
+// Handle the 'submit' button click event
+document.getElementById('submit').addEventListener('click', () => {
+    const choice = confirm("Do you think these are the same species?");
+    fetch('YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL', {
+        method: 'POST',
+        contentType: 'application/json',
+        body: JSON.stringify({
+            species1: currentSpecies[0],
+            species2: currentSpecies[1],
+            choice: choice ? "Yes" : "No"
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        displayNewPair(); // Move to the next pair after submitting
+    })
+    .catch(error => {
+        console.error("Error posting data:", error);
+    });
+});
 
 // Do not call displayNewPair() here directly, let it be called after JSON is loaded
