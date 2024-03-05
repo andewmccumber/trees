@@ -70,7 +70,7 @@ document.getElementById('next').addEventListener('click', () => {
   console.log(dataToSend);
   
   // Send the choice to the Google Apps Script
-  fetch('https://script.google.com/macros/s/AKfycbynGEnu0_jyasZrh32RVGxOvOkS06BJmadpxV37bFPQ05_O4xfqm-YOcQ-M7zoM1PP2/exec', {
+  fetch('https://script.google.com/macros/s/AKfycbyv0u0ACI7DAZl8qOZBGD2Q_wJ-Oiu-WgN0ghw96_xWXd6IodtPvx5wvdBGF3CnMqmm/exec', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json', // Corrected line: headers property
