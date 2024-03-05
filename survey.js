@@ -59,7 +59,13 @@ document.getElementById('next').addEventListener('click', () => {
         alert("Please select Yes or No before moving on to the next pair.");
         return;
     }
-
+    console.log(currentSpecies);
+    let dataToSend = JSON.stringify({
+        species1: currentSpecies[0],
+        species2: currentSpecies[1],
+        choice: choice
+    });
+console.log(dataToSend);
     // Send the choice to the Google Apps Script
     fetch('https://script.google.com/macros/s/AKfycbxLz5hOaWNi9Nxxt5f1XxbAO4AIRD9_6lrd4PKmnYdVuOoqDRk1jcTICLQYremWE87P/exec', {
         method: 'POST',
