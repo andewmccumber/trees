@@ -70,7 +70,7 @@ document.getElementById('next').addEventListener('click', () => {
   console.log(dataToSend);
   
   // Send the choice to the Google Apps Script
-  fetch('https://script.google.com/macros/s/AKfycbyv0u0ACI7DAZl8qOZBGD2Q_wJ-Oiu-WgN0ghw96_xWXd6IodtPvx5wvdBGF3CnMqmm/exec', {
+  fetch('https://script.google.com/a/macros/stonybrook.edu/s/AKfycbwOVEaBn3LbMQpUoUm2fReuFQjtpDEFiKUJ5HLXEauixNUJHTYwcnU4EdMBwoB8lE8w/exec', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json', // Corrected line: headers property
