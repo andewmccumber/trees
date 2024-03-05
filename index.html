@@ -2,31 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Species Image Comparison Survey</title>
-    <style>
-        .image-container img {
-            border: 2px solid black; /* Style for image borders */
-            width: 200px; /* Adjust as needed */
-            height: auto; /* Maintain aspect ratio */
-        }
-        /* Additional styles as necessary */
-    </style>
+    <title>Tree Species Survey</title>
 </head>
 <body>
-    <h2>Species Image Comparison Survey</h2>
-    
-    <!-- Image Containers for Displaying Species Images -->
-    <div id="image1Container" class="image-container">
-        <!-- Image for first species will be dynamically inserted here -->
+    <div id="images">
+        <img id="image1" src="" alt="Species 1">
+        <img id="image2" src="" alt="Species 2">
     </div>
-    <div id="image2Container" class="image-container">
-        <!-- Image for second species will be dynamically inserted here -->
-    </div>
-    
-    <!-- Buttons for Regenerating Images for Each Species -->
-    <button id="regenerateSpecies1">Regenerate Image for Species 1</button>
-    <button id="regenerateSpecies2">Regenerate Image for Species 2</button>
-    
-    <script src="survey.js"></script>
+    <button id="replace1">Replace Image 1</button>
+    <button id="replace2">Replace Image 2</button>
+    <button id="sameSpecies">Same Species</button>
+    <button id="differentSpecies">Different Species</button>
+    <button id="next">Next</button>
+
+    <script src="script.js"></script>
 </body>
 </html>
