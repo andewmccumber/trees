@@ -86,6 +86,5 @@ fetch('https://script.google.com/macros/s/AKfycbxLz5hOaWNi9Nxxt5f1XxbAO4AIRD9_6l
     .catch(error => {
         console.error("Error posting data:", error);
     });
-);
 
 // Do not call displayNewPair() here directly, let it be called after JSON is loaded
