@@ -2,40 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tree Grid Image Survey</title>
-    <style>
-        .image-container {
-            display: flex;
-            justify-content: space-around; /* Distribute space around items */
-            flex-wrap: wrap; /* Allow items to wrap as needed */
-            margin-bottom: 20px; /* Add some space between images and the question */
-        }
-        .image-container img {
-            border: 2px solid black; /* Black border around images */
-            max-width: 98%; /* Maximum width of each image is 48% of the container */
-            max-height: 400px; /* Maximum height of each image */
-            width: auto; /* Maintain aspect ratio */
-            height: auto; /* Maintain aspect ratio */
-            margin-bottom: 10px; /* Space below the images */
-        }
-        .question {
-            text-align: center;
-            width: 100%; /* Ensure the question takes the full width */
-        }
-        .hidden {
-            display: none;
-        }
-    </style>
+    <title>Tree Species Survey</title>
 </head>
 <body>
-    <h2>Tree Grid Image Survey</h2>
-    <div id="surveyContainer" class="image-container">
-        <!-- Image pairs will be injected here by JavaScript -->
+    <div id="images">
+        <img id="image1" src="" alt="Species 1">
+        <img id="image2" src="" alt="Species 2">
     </div>
-    <div class="question">
-    </div>
-    <button id="nextButton" onclick="showNextPair()">Next</button>
+    <button id="replace1">Replace Image 1</button>
+    <button id="replace2">Replace Image 2</button>
+    <button id="sameSpecies">Same Species</button>
+    <button id="differentSpecies">Different Species</button>
+    <button id="next">Next</button>
 
-    <script src="survey.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
