@@ -1,4 +1,4 @@
-const speciesMappingUrl = 'path/to/your/species_mapping.json'; // Adjust this path
+const speciesMappingUrl = 'speciesImagePaths.json'; // Adjust this path
 let speciesMapping = {};
 let currentPair = [];
 let imageIndices = {1: 0, 2: 0}; // To keep track of which images are currently being shown
