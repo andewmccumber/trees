@@ -35,4 +35,26 @@
 
     <script src="survey.js"></script>
 </body>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDC4xQKkPVejkYvt4NWsIoxmg47i9Awi3o",
+    authDomain: "treetest-a122b.firebaseapp.com",
+    projectId: "treetest-a122b",
+    storageBucket: "treetest-a122b.appspot.com",
+    messagingSenderId: "885813433565",
+    appId: "1:885813433565:web:e8049a92e754311cfc7734",
+    measurementId: "G-KYSP0LT1DP"
+  };
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 </html>
