@@ -72,19 +72,25 @@ fetch('https://script.google.com/macros/s/AKfycbzdY8nmJ64Zxc6-irgXCIZ8nRvZWb2-kS
         headers: {
             'Content-Type': 'application/json', // Corrected line: headers property
         },
-        body: dataToSend // Corrected line: use the previously stringified data
+        body: dataToSend,
+        credentials: 'include'
 })
     })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        // Clear the previous selection
-        document.querySelector('input[name="sameSpecies"]:checked').checked = false;
-        // Load the next pair
-        displayNewPair();
-    })
-    .catch(error => {
-        console.error("Error posting data:", error);
-    });
+    .then(response => {
+     if (!response.ok) {
+         throw new Error('Network response was not ok');
+     }
+     return response.json();
+})
+.then(data => {
+    console.log(data);
+    // Clear the previous selection
+    document.querySelector('input[name="sameSpecies"]:checked').checked = false;
+    // Load the next pair
+    displayNewPair();
+})
+.catch(error => {
+    console.error("Error posting data:", error);
+ });
 
 // Do not call displayNewPair() here directly, let it be called after JSON is loaded
