@@ -69,12 +69,11 @@ console.log(dataToSend);
     // Send the choice to the Google Apps Script
     fetch('https://script.google.com/macros/s/AKfycbxLz5hOaWNi9Nxxt5f1XxbAO4AIRD9_6lrd4PKmnYdVuOoqDRk1jcTICLQYremWE87P/exec', {
         method: 'POST',
-        contentType: 'application/json',
-        body: JSON.stringify({
-            species1: currentSpecies[0],
-            species2: currentSpecies[1],
-            choice: choice
-        })
+        headers: {
+            'Content-Type': 'application/json', // Corrected line: headers property
+        },
+        body: dataToSend // Corrected line: use the previously stringified data
+})
     })
     .then(response => response.json())
     .then(data => {
