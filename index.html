@@ -3,17 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Tree Species Survey</title>
+    <style>
+        #imageContainer img {
+            border: 3px solid black;
+            margin: 10px;
+        }
+        .buttonGroup {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <div id="imageContainer">
         <img id="image1" src="" alt="Species 1">
         <img id="image2" src="" alt="Species 2">
     </div>
-    <button id="replace1">Replace Image 1</button>
-    <button id="replace2">Replace Image 2</button>
-    <button id="submit">Same Species?</button>
-    <button id="next">Next Pair</button>
 
-    <script src="survey.js"></script>
+    <div id="questionContainer">
+        <p>Do these two images show the same kind of tree/plant?</p>
+        <input type="radio" id="yes" name="sameSpecies" value="Yes">
+        <label for="yes">Yes</label>
+        <input type="radio" id="no" name="sameSpecies" value="No">
+        <label for="no">No</label>
+    </div>
+
+    <div class="buttonGroup">
+        <button id="replace1">Replace Image 1</button>
+        <button id="replace2">Replace Image 2</button>
+        <button id="next">Next Pair</button>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
