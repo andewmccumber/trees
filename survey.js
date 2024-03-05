@@ -48,22 +48,35 @@ document.getElementById('replace2').addEventListener('click', () => {
     document.getElementById('image2').src = getRandomImage(currentSpecies[1]);
 });
 
-// Handle the 'submit' button click event
-document.getElementById('submit').addEventListener('click', () => {
-    const choice = confirm("Do you think these are the same species?");
-    fetch('https://script.google.com/macros/s/AKfycbxLz5hOaWNi9Nxxt5f1XxbAO4AIRD9_6lrd4PKmnYdVuOoqDRk1jcTICLQYremWE87P/exec', {
+// ... (rest of your initial code)
+
+document.getElementById('next').addEventListener('click', () => {
+    // Check which radio button is selected
+    let choice = document.querySelector('input[name="sameSpecies"]:checked')?.value;
+    
+    // Make sure the user has made a selection
+    if (!choice) {
+        alert("Please select Yes or No before moving on to the next pair.");
+        return;
+    }
+
+    // Send the choice to the Google Apps Script
+    fetch('YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL', {
         method: 'POST',
         contentType: 'application/json',
         body: JSON.stringify({
             species1: currentSpecies[0],
             species2: currentSpecies[1],
-            choice: choice ? "Yes" : "No"
+            choice: choice
         })
     })
     .then(response => response.json())
     .then(data => {
         console.log(data);
-        displayNewPair(); // Move to the next pair after submitting
+        // Clear the previous selection
+        document.querySelector('input[name="sameSpecies"]:checked').checked = false;
+        // Load the next pair
+        displayNewPair();
     })
     .catch(error => {
         console.error("Error posting data:", error);
