@@ -51,7 +51,7 @@ document.getElementById('replace2').addEventListener('click', () => {
 // Handle the 'submit' button click event
 document.getElementById('submit').addEventListener('click', () => {
     const choice = confirm("Do you think these are the same species?");
-    fetch('YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL', {
+    fetch('https://script.google.com/macros/s/AKfycbxLz5hOaWNi9Nxxt5f1XxbAO4AIRD9_6lrd4PKmnYdVuOoqDRk1jcTICLQYremWE87P/exec', {
         method: 'POST',
         contentType: 'application/json',
         body: JSON.stringify({
