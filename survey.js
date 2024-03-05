@@ -67,7 +67,7 @@ document.getElementById('next').addEventListener('click', () => {
     });
 console.log(dataToSend);
     // Send the choice to the Google Apps Script
-    fetch('https://script.google.com/macros/s/AKfycbxLz5hOaWNi9Nxxt5f1XxbAO4AIRD9_6lrd4PKmnYdVuOoqDRk1jcTICLQYremWE87P/exec', {
+fetch('https://script.google.com/macros/s/AKfycbxLz5hOaWNi9Nxxt5f1XxbAO4AIRD9_6lrd4PKmnYdVuOoqDRk1jcTICLQYremWE87P/exec', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json', // Corrected line: headers property
@@ -86,6 +86,6 @@ console.log(dataToSend);
     .catch(error => {
         console.error("Error posting data:", error);
     });
-});
+);
 
 // Do not call displayNewPair() here directly, let it be called after JSON is loaded
