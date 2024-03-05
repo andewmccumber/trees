@@ -1,5 +1,7 @@
 let speciesMapping = {}; // To be filled with your JSON data
 let currentSpecies = [];
+const cors = require('cors');
+app.use(cors());
 
 // Load species mapping from JSON
 fetch('speciesImagePaths.json')
