@@ -50,30 +50,25 @@ function sendResponse(species1, species2, choice) {
     });
 }
 
-// Load species mapping from JSON and initialize the first pair
+document.getElementById('replace1').addEventListener('click', () => {
+    // Check if the speciesMapping is loaded and currentSpecies[0] is defined
+    if (speciesMapping && currentSpecies[0]) {
+        document.getElementById('image1').src = getRandomImage(currentSpecies[0]);
+    } else {
+        console.error('speciesMapping is not loaded or currentSpecies[0] is not defined');
+    }
+});
+
+document.getElementById('replace2').addEventListener('click', () => {
+    // Check if the speciesMapping is loaded and currentSpecies[1] is defined
+    if (speciesMapping && currentSpecies[1]) {
+        document.getElementById('image2').src = getRandomImage(currentSpecies[1]);
+    } else {
+        console.error('speciesMapping is not loaded or currentSpecies[1] is not defined');
+    }
+});
+
 fetch('speciesImagePaths.json')
     .then(response => response.json())
     .then(initializeSpeciesMapping)
     .catch(error => console.error('Failed to load species mapping:', error));
-
-// Event listeners for the survey buttons
-document.getElementById('next').addEventListener('click', () => {
-    const choiceElement = document.querySelector('input[name="sameSpecies"]:checked');
-    if (!choiceElement) {
-        alert("Please select Yes or No before moving on to the next pair.");
-        return;
-    }
-    const choice = choiceElement.value;
-
-    sendResponse(currentSpecies[0], currentSpecies[1], choice);
-    // Clear the selection for the next pair
-    choiceElement.checked = false;
-});
-
-document.getElementById('replace1').addEventListener('click', () => {
-    document.getElementById('image1').src = getRandomImage(currentSpecies[0]);
-});
-
-document.getElementById('replace2').addEventListener('click', () => {
-    document.getElementById('image2').src = getRandomImage(currentSpecies[1]);
-});
